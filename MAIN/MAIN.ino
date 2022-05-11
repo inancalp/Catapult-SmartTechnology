@@ -26,13 +26,13 @@ int pingTravelTime;
 
 //SERVO3 N ROTATION
 
-String flagResult = "FIRST";
+//String flagResult = "FIRST";
 int servo3pin = 7; //servo3 pin
-int iniServo3pos = 90;
+int iniServo3pos = 0;
 int pos;//initial servo3 postion
 int OK = 0; // 0 -> manual && 1 -> auto;
 unsigned long lastCode; //last HEX code received from the remote
-
+int flagRotate = 1; 
 
 void setup() {
   
@@ -105,11 +105,16 @@ void loop() {
       //AUTO    
     
    if (Mode == "star"){
-    while(Mode == "star"){
+
        s1_garden = 90;
        s1_tower = 180; 
        s2_hold = 90; 
        s2_letGo = 180; 
+       
+    while(Mode == "star"){
+
+//VARIABLES ABOVE WAS HERE!
+
       digitalWrite(triggerPin, LOW);
       delayMicroseconds(10);
       digitalWrite(triggerPin, HIGH);
@@ -117,7 +122,32 @@ void loop() {
       digitalWrite(triggerPin, LOW);
       pingTravelTime = pulseIn(echoPin, HIGH);
       delay(loop_DELAY);
+      Serial.println(pos);
       Serial.println(pingTravelTime);
+
+      
+      if (flagRotate == 1)
+      {
+        if(pos < 180)
+        {
+            pos += 5;
+            servo3.write(pos);
+        }
+        else
+        {
+          flagRotate = 0;
+        }
+      }
+      else if(flagRotate == 0)
+      {
+        if(pos>0)
+        {
+          pos -= 5;
+          servo3.write(pos);
+        }
+         else{flagRotate = 1;}
+      }
+
       
       if(pingTravelTime <= 1500 && pingTravelTime >= 0){
         while (s1_tower != 90){
@@ -144,73 +174,71 @@ void loop() {
 
    //MANUAL
 
-   if (Mode == "hashtag"){
-    
-            while (IR.decode(&cmd) == 0){}
-            Serial.println("Second Portion:");
-            Serial.println(cmd.value, HEX);
-            delay(DELAY);
-            IR.resume();
-
-  if(cmd.value == 0xFF02FD)
-            {
-              manualMode="ok";
-              Serial.print("manualMode State -> ");
-              Serial.println(manualMode);
-            }
-            
-// rotation comes here!   -BEG- 
-   
-            
-   while(manualMode != "ok"){
-    
-    while (IR.decode(&cmd) == 0){}
-    Serial.println(cmd.value, HEX);
-
-    if(cmd.value == 0xFF02FD)
-            {
-              manualMode="ok";
-              Serial.print("manualMode State -> ");
-              Serial.println(manualMode);
-              delay(DELAY);
-              IR.resume();
-            }
-            
-    if(IR.decode(&cmd)){
-      Serial.print("flagResult value = ");
-      Serial.println(flagResult);
-      Serial.print("Result value = ");
-      Serial.println(cmd.value);
-      
-      if(cmd.value == 0xFFFFFFFF){
-          cmd.value = lastCode;
-      }
-  
-      if(cmd.value == 0xFF22DD){
-          lastCode = cmd.value;
-          pos+=3;
-          if(pos > 180){pos = 180;}
-          servo3.write(pos); 
-      }
-
-      if(cmd.value == 0xFFC23D){
-          lastCode = cmd.value;
-          pos-=3;
-          if(pos<0){pos = 0;}
-          servo3.write(pos); 
-        } 
-
-       flagResult = (cmd.value, HEX);
-       delay(1);
-       IR.resume();
-   }
-    }
-
-            
-// rotation comes here!      -END-
+  if (Mode == "hashtag"){
         
+      while (IR.decode(&cmd) == 0){}
+      Serial.println("Second Portion:");
+      Serial.println(cmd.value, HEX);
+      delay(DELAY);
 
+//      BUG CAUSE!
+//      IR.resume();
+    
+      if(cmd.value == 0xFF02FD)
+                {
+                  manualMode="ok";
+                  Serial.print("manualMode State -> ");
+                  Serial.println(manualMode);
+                }
+                
+    // rotation comes here!   -BEG- 
+       
+                
+       while(manualMode != "ok"){
+        
+        while (IR.decode(&cmd) == 0){}
+        Serial.print("value= ");
+        Serial.println(cmd.value, HEX);
+    
+        if(cmd.value == 0xFF02FD)
+                {
+                  manualMode="ok";
+                  Serial.print("manualMode State -> ");
+                  Serial.println(manualMode);
+                  delay(DELAY);
+                  IR.resume();
+                }
+                
+        if(IR.decode(&cmd)){
+          
+          Serial.print("Result value = ");
+          Serial.println(cmd.value, HEX);
+          
+          if(cmd.value == 0xFFFFFFFF){
+              cmd.value = lastCode;
+          }
+          if(cmd.value == 0xFF22DD){
+              lastCode = cmd.value;
+              pos+=5;
+              if(pos > 180){pos = 180;}
+              servo3.write(pos); 
+          }
+          if(cmd.value == 0xFFC23D){
+              lastCode = cmd.value;
+              pos-=5;
+              if(pos<0){pos = 0;}
+              servo3.write(pos); 
+          } 
             
+          delay(1);
+          IR.resume();
+       }
+        }
+    
+                
+    // rotation comes here!      -END-
+            
+      
            if (Mode == "hashtag" && manualMode == "ok")
            {    
              s1_garden = 90;
@@ -240,6 +268,7 @@ void loop() {
              servo2.write(s2_hold);
              delay(DELAY);
              manualMode = "";
+             Mode = "";
            }
     
     }
