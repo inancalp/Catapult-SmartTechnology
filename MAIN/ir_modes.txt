@@ -1,0 +1,62 @@
+//  if(cmd.value == 0xFF629D){
+//    myCom="up";
+//    Serial.print("myCom State -> ");
+//    Serial.println(myCom);
+//  }
+//  if(cmd.value == 0xFFA857){
+//    myCom="down";
+//    Serial.print("myCom State -> ");
+//    Serial.println(myCom);
+//  }
+
+
+//  if(cmd.value == 0xFF6897){
+//    myCom="one";
+//    Serial.print("myCom State -> ");
+//    Serial.println(myCom);
+//  }
+//  if(cmd.value == 0xFF9867){
+//    myCom="two";
+//    Serial.print("myCom State -> ");
+//    Serial.println(myCom);
+//  }
+//  if(cmd.value == 0xFFB04F){
+//    myCom="three";
+//    Serial.print("myCom State -> ");
+//    Serial.println(myCom);
+//  }
+//  if(cmd.value == 0xFF30CF){
+//    myCom="four";
+//    Serial.print("myCom State -> ");
+//    Serial.println(myCom);
+//  }
+//  if(cmd.value == 0xFF18E7){
+//    myCom="five";
+//    Serial.print("myCom State -> ");
+//    Serial.println(myCom);
+//  }
+//  if(cmd.value == 0xFF7A85){
+//    myCom="six";
+//    Serial.print("myCom State -> ");
+//    Serial.println(myCom);
+//  }
+//  if(cmd.value == 0xFF10EF){
+//    myCom="seven";
+//    Serial.print("myCom State -> ");
+//    Serial.println(myCom);
+//  }
+//  if(cmd.value == 0xFF38C7){
+//    myCom="eight";
+//    Serial.print("myCom State -> ");
+//    Serial.println(myCom);
+//  }
+//  if(cmd.value == 0xFF5AA5){
+//    myCom="nine";
+//    Serial.print("myCom State -> ");
+//    Serial.println(myCom);
+//  }
+//  if(cmd.value == 0xFF4AB5){
+//    myCom="zero";
+//    Serial.print("myCom State -> ");
+//    Serial.println(myCom);
+//  }
