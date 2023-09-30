@@ -24,6 +24,6 @@ Catapult that launches an object.
   - To show the current mode of the device.
 
 # Youtube links for the device
-https://youtu.be/oupOeaB1eSA?si=T9DLTklxGI6k6oNg
-https://youtube.com/shorts/hDFgUV1-7SA?si=VC8-2oN0ikpqC7j2
+- https://youtu.be/oupOeaB1eSA?si=T9DLTklxGI6k6oNg
+- https://youtube.com/shorts/hDFgUV1-7SA?si=VC8-2oN0ikpqC7j2
 
