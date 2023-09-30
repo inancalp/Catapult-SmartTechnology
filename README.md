@@ -24,5 +24,5 @@ This project involves building a catapult with Arduino that offers both manual a
 - Check the LCD Screen to see the current mode.
 
 ## YouTube Links
-- [Video 1](https://youtu.be/oupOeaB1eSA?si=T9DLTklxGI6k6oNg): [Add a brief description or timestamp here]
-- [Video 2](https://youtube.com/shorts/hDFgUV1-7SA?si=VC8-2oN0ikpqC7j2): [Add a brief description or timestamp here]
+- https://youtu.be/oupOeaB1eSA?si=T9DLTklxGI6k6oNg
+- https://youtube.com/shorts/hDFgUV1-7SA?si=VC8-2oN0ikpqC7j2
