@@ -23,7 +23,7 @@ Catapult that launches an object.
 -	LCD Screen
   - To show the current mode of the device.
 
-# Youtube links for the device
+# Youtube links
 - https://youtu.be/oupOeaB1eSA?si=T9DLTklxGI6k6oNg
 - https://youtube.com/shorts/hDFgUV1-7SA?si=VC8-2oN0ikpqC7j2
 
